@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beach Retreats | Chayve Retreats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Header -->
+<header class="bg-white shadow-sm p-4 sticky top-0 z-10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a href="retreats.html" class="flex items-center space-x-2 text-gray-700 hover:text-black transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span class="text-md font-medium">Back</span>
+    </a>
+    <span class="text-xl font-bold text-gray-700 tracking-wide">Chayve Retreats</span>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto p-6">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Beach Getaways </h2>
+
+  <!-- Horizontal Scroll Gallery -->
+  <div id="propertyGrid" class="flex space-x-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory">
+    <!-- Cards will be injected here by JS -->
+  </div>
+</main>
+
+<!-- Modal -->
+<div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-xl w-full max-w-4xl p-6 relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-600 hover:text-black text-xl">&times;</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <img id="modalImage" src="" class="w-full h-80 object-cover rounded-xl" alt="Property Image">
+      </div>
+      <div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2">Title</h3>
+        <p id="modalDescription" class="text-gray-600 mb-4">Details go here.</p>
+        <p id="modalPrice" class="text-xl text-gray-900 font-semibold"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const properties = [
+    {
+      title: "Lover's Escape Villa",
+      description: "Secluded beachfront retreat in Diani with romantic lighting, a private chef, and a luxurious pool just for two.",
+      price: "KES 12,000 / night",
+      rating: "4.8 ★",
+      image: "https://source.unsplash.com/600x400/?couple,beach"
+    },
+    {
+      title: "Serenity Love Cabin",
+      description: "Nestled by Lake Naivasha, enjoy fireplace nights, breathtaking lakefront views, and a hot outdoor jacuzzi.",
+      price: "KES 9,500 / night",
+      rating: "4.7 ★",
+      image: "https://source.unsplash.com/600x400/?couples,cabin"
+    },
+    {
+      title: "Moonlight Treehouse",
+      description: "Hidden in the Nanyuki forest, this stargazing retreat has a dreamy treehouse vibe with guided nature walks.",
+      price: "KES 11,300 / night",
+      rating: "4.9 ★",
+      image: "https://source.unsplash.com/600x400/?treehouse,couple"
+    }
+  ];
+
+  const propertyGrid = document.getElementById('propertyGrid');
+
+  properties.forEach((property, index) => {
+    const card = document.createElement('div');
+    card.className = "bg-white min-w-[300px] snap-start rounded-xl shadow-md hover:shadow-xl transition cursor-pointer";
+    card.innerHTML = `
+      <img src="${property.image}" alt="${property.title}" class="w-full h-56 object-cover rounded-t-xl">
+      <div class="p-4 space-y-2">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">${property.title}</h3>
+          <span class="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded-full font-medium">${property.rating}</span>
+        </div>
+        <p class="text-gray-600 text-sm">${property.description}</p>
+        <p class="text-gray-900 font-bold">${property.price} <span class="text-sm font-normal text-gray-500">/ night</span></p>
+      </div>
+    `;
+    card.onclick = () => openModal(index);
+    propertyGrid.appendChild(card);
+  });
+
+  function openModal(index) {
+    const property = properties[index];
+    document.getElementById("modalTitle").innerText = property.title;
+    document.getElementById("modalDescription").innerText = property.description;
+    document.getElementById("modalPrice").innerText = property.price;
+    document.getElementById("modalImage").src = property.image;
+    document.getElementById("propertyModal").classList.remove("hidden");
+    document.getElementById("propertyModal").classList.add("flex");
+  }
+
+  function closeModal() {
+    document.getElementById("propertyModal").classList.add("hidden");
+    document.getElementById("propertyModal").classList.remove("flex");
+  }
+</script>
+
+</body>
+</html>

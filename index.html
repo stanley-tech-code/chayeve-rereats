@@ -1,0 +1,330 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chayve Retreats</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Chayve Retreats</div>
+  <div class="nav-links" style="display: flex; gap: 35px;">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="retreats.html">Retreats</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<style>
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgb(114, 110, 110); /* less transparent than before */
+  backdrop-filter: blur(6px); /* softens what's behind */
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+  nav .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1rem;
+  }
+
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+
+
+
+  .testimonials-section {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.testimonials-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.testimonials-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap; /* Makes it responsive on small screens */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card .quote {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.testimonial-card .author {
+  font-weight: bold;
+  color: #cc3366;
+  margin-bottom: 10px;
+}
+
+.testimonial-card .stars {
+  font-size: 20px;
+  color: #FFD700;
+}
+
+</style>
+
+
+<body>
+<nav>
+  <div class="logo">Chayve Retreats</div>
+  <div class="nav-links" style="display: flex; gap: 35px;">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="retreats.html">Retreats</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+
+<!-- Hero Slideshow Section -->
+<header class="hero-slideshow">
+  <div class="slides">
+    <img src="https://theholidaydealers.com/wp-content/uploads/2023/08/Mara-Bush-Camp-2.jpg" class="slide" alt="Mara Bush Camp View" />
+    <img src="https://theholidaydealers.com/wp-content/uploads/2023/08/Mara-Bush-Camp-5-scaled.jpg" class="slide" alt="Mara Bush Camp Interior" />
+    <img src="https://theholidaydealers.com/wp-content/uploads/2023/08/Mara-Bush-Camp-10.jpg" class="slide" alt="Mara Bush Camp Tent" />
+    <img src="https://theholidaydealers.com/wp-content/uploads/2023/08/Mara-Bush-Camp-1-scaled.jpg" class="slide" alt="Mara Bush Camp Entrance" />
+  </div>
+  <div class="hero-text">
+    <h1>Escape. Recharge. Rediscover.</h1>
+    <p>Tea hills, tropical pools, safari lodges & mountain hideaways.</p>
+  </div>
+  <div class="dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<style>
+.hero-slideshow {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #fff;
+}
+</style>
+
+<script>
+let slides = document.querySelectorAll('.slide');
+let dots = document.querySelectorAll('.dot');
+let index = 0;
+
+function showSlide(i) {
+  slides.forEach((slide, idx) => {
+    slide.classList.remove('active');
+    dots[idx].classList.remove('active');
+    if (idx === i) {
+      slide.classList.add('active');
+      dots[idx].classList.add('active');
+    }
+  });
+}
+
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    index = i;
+    showSlide(i);
+  });
+});
+
+showSlide(index);
+setInterval(nextSlide, 8000);
+</script>
+
+
+
+ <!-- Welcome Section -->
+  <section class="welcome">
+    <h2>Welcome to Chayve</h2>
+    <p>We design soul-restoring, luxury retreats in Kenya's most serene locations—from the wild beauty of Amboseli to the tranquil coasts and boutique villas.</p>
+  </section>
+
+  <!-- Retreat Highlights -->
+  <section class="retreats">
+    <h2>Our Signature Retreats</h2>
+    <div class="retreat-grid">
+      <div class="retreat-card">
+        <h3>Couples Retreat</h3>
+        <p>Romantic getaways curated for deep connection and relaxation.</p>
+      </div>
+      <div class="retreat-card">
+        <h3>Safari Wellness</h3>
+        <p>Mindful adventures in the wild—blend nature, yoga, and quiet.</p>
+      </div>
+      <div class="retreat-card">
+        <h3>Girls Getaway</h3>
+        <p>Stylish, soul-nourishing escapes for sisterhood and fun.</p>
+      </div>
+          <div class="retreat-card">
+      <h3>Family Retreats</h3>
+      <p>Reconnect with loved ones in safe, luxurious spaces designed for every age. Perfect for bonding and memory-making.</p>
+    </div>
+    </div>
+  </section>
+
+ <section class="testimonials-section">
+  <h2>What Our Guests Say</h2>
+  <div class="testimonials-wrapper">
+    <div class="testimonial-card">
+      <p class="quote">“Truly unforgettable. Every moment was curated to perfection.”</p>
+      <p class="author">– Yvonne K.</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="quote">“The villa was stunning and the service was top notch!”</p>
+      <p class="author">– Brian M.</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="quote">“Absolutely loved our time here. Will definitely be back.”</p>
+      <p class="author">– Sarah W.</p>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional: Hide scroll bar on modern browsers -->
+<style>
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+</style>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Chayve Retreats. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Couples Retreats | Chayve Retreats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .modal-gallery img {
+      transition: transform 0.3s ease;
+    }
+    .modal-gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Header -->
+<header class="bg-white shadow-sm p-4 sticky top-0 z-10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a href="retreats.html" class="flex items-center space-x-2 text-gray-700 hover:text-black transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      <span class="text-md font-medium">Back</span>
+    </a>
+    <span class="text-xl font-bold text-gray-700 tracking-wide">Chayve Retreats</span>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto p-6">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Perfect Getaways for Couples</h2>
+
+  <!-- Grid of Properties -->
+  <div id="propertyGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Injected by JS -->
+  </div>
+</main>
+
+
+
+
+<!-- Modal -->
+<div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-xl w-full max-w-5xl p-6 relative overflow-y-auto max-h-[90vh]">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-600 hover:text-black text-2xl">&times;</button>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Left Column: Images -->
+      <div>
+        <div class="grid grid-cols-2 gap-2 modal-gallery">
+          <img id="modalImage1" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage2" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage3" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage4" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+        </div>
+      </div>
+
+      <!-- Right Column: Info -->
+      <div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2">Title</h3>
+        <p id="modalDescription" class="text-gray-600 mb-4">Details go here.</p>
+        <p id="modalPrice" class="text-xl text-gray-900 font-semibold mb-4">Price</p>
+
+        <!-- Booking Section -->
+        <form id="bookingForm" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block mb-1 font-semibold text-gray-700">Check-in Date</label>
+              <input type="date" id="checkin" class="w-full border border-gray-300 rounded p-2" required>
+            </div>
+            <div>
+              <label class="block mb-1 font-semibold text-gray-700">Check-in Time</label>
+              <input type="time" id="checkinTime" class="w-full border border-gray-300 rounded p-2" required>
+            </div>
+            <div>
+              <label class="block mb-1 font-semibold text-gray-700">Check-out Date</label>
+              <input type="date" id="checkout" class="w-full border border-gray-300 rounded p-2" required>
+            </div>
+            <div>
+              <label class="block mb-1 font-semibold text-gray-700">Check-out Time</label>
+              <input type="time" id="checkoutTime" class="w-full border border-gray-300 rounded p-2" required>
+            </div>
+          </div>
+
+          <div>
+            <label class="block mb-1 font-semibold text-gray-700">Number of Guests</label>
+            <input type="number" id="guests" class="w-full border border-gray-300 rounded p-2" min="1" value="1" required>
+          </div>
+
+          <div class="flex gap-4">
+            <label class="inline-flex items-center">
+              <input type="checkbox" id="hasPet" class="form-checkbox h-5 w-5 text-indigo-600">
+              <span class="ml-2 text-gray-700">Pet?</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="checkbox" id="hasChild" class="form-checkbox h-5 w-5 text-indigo-600">
+              <span class="ml-2 text-gray-700">Child?</span>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Book Now via WhatsApp
+          </button>
+        </form>
+
+        <!-- Google Maps -->
+        <div class="mt-4">
+          <h4 class="text-md font-semibold mb-1 text-gray-700">Location: Gathoni Park Farm</h4>
+          <iframe
+            src="https://www.google.com/maps?q=Gathoni+Park+Farm,+Kenya&output=embed"
+            class="w-full h-48 border border-gray-300 rounded"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script for WhatsApp Booking -->
+<script>
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const checkin = document.getElementById('checkin').value;
+    const checkinTime = document.getElementById('checkinTime').value;
+    const checkout = document.getElementById('checkout').value;
+    const checkoutTime = document.getElementById('checkoutTime').value;
+    const guests = document.getElementById('guests').value;
+    const hasPet = document.getElementById('hasPet').checked ? "Yes" : "No";
+    const hasChild = document.getElementById('hasChild').checked ? "Yes" : "No";
+
+    const message = `Hello, I’d like to book a stay at Gathoni Park Farm.
+Check-in: ${checkin} at ${checkinTime}
+Check-out: ${checkout} at ${checkoutTime}
+Guests: ${guests}
+Pet: ${hasPet}
+Child: ${hasChild}`;
+
+    const phone = "254795138323";
+    const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  });
+</script>
+
+
+
+<!-- Modal -->
+<div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-xl w-full max-w-5xl p-6 relative overflow-y-auto max-h-[90vh]">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-600 hover:text-black text-2xl">&times;</button>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Left Column: Images -->
+      <div>
+        <div class="grid grid-cols-2 gap-2 modal-gallery">
+          <img id="modalImage1" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage2" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage3" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+          <img id="modalImage4" src="" class="rounded-xl h-40 object-cover w-full" alt="Gallery">
+        </div>
+      </div>
+      <!-- Right Column: Info -->
+      <div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2">Title</h3>
+        <p id="modalDescription" class="text-gray-600 mb-4">Details go here.</p>
+        <p id="modalPrice" class="text-xl text-gray-900 font-semibold mb-4">Price</p>
+        <!-- Google Maps Placeholder -->
+        <div class="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 text-sm italic">
+          Google Maps integration coming soon
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const properties = [
+    {
+      title: "Lover's Escape Villa",
+      description: "Secluded beachfront retreat in Diani with romantic lighting, a private chef, and a luxurious pool just for two.",
+      price: "KES 12,000 / night",
+      rating: "4.8 ★",
+      images: [
+        "https://tea-pod.com/wp-content/uploads/2024/12/PXL_20241217_144728863-scaled.jpg",
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
+      ]
+    },
+    {
+      title: "Serenity Love Cabin",
+      description: "Nestled by Lake Naivasha, enjoy fireplace nights, breathtaking lakefront views, and a hot outdoor jacuzzi.",
+      price: "KES 9,500 / night",
+      rating: "4.7 ★",
+      images: [
+        "https://tea-pod.com/wp-content/uploads/2024/12/PXL_20241217_144728863-scaled.jpg",
+        "https://images.unsplash.com/photo-1576678927484-cc9079570881",
+        "https://images.unsplash.com/photo-1595814433163-8c00d07b16b3",
+        "https://images.unsplash.com/photo-1551218372-48dfd0d1f963"
+      ]
+    },
+    {
+      title: "Moonlight Treehouse",
+      description: "Hidden in the Nanyuki forest, this stargazing retreat has a dreamy treehouse vibe with guided nature walks.",
+      price: "KES 11,300 / night",
+      rating: "4.9 ★",
+      images: [
+        "https://tea-pod.com/wp-content/uploads/2024/12/PXL_20241217_144728863-scaled.jpg",
+        "https://images.unsplash.com/photo-1600585152630-8cf90a2a5b3b",
+        "https://images.unsplash.com/photo-1582719478171-6c4c13c1fc59",
+        "https://images.unsplash.com/photo-1507089947368-19c1da9775ae"
+      ]
+    }
+  ];
+
+  const propertyGrid = document.getElementById('propertyGrid');
+
+  properties.forEach((property, index) => {
+    const card = document.createElement('div');
+    card.className = "bg-white rounded-xl shadow-md hover:shadow-xl transition cursor-pointer overflow-hidden";
+    card.innerHTML = `
+      <img src="${property.images[0]}" alt="${property.title}" class="w-full h-48 object-cover">
+      <div class="p-4 space-y-2">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">${property.title}</h3>
+          <span class="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded-full font-medium">${property.rating}</span>
+        </div>
+        <p class="text-gray-600 text-sm line-clamp-2">${property.description}</p>
+        <p class="text-gray-900 font-bold">${property.price}</p>
+      </div>
+    `;
+    card.onclick = () => openModal(index);
+    propertyGrid.appendChild(card);
+  });
+
+  function openModal(index) {
+    const property = properties[index];
+    document.getElementById("modalTitle").innerText = property.title;
+    document.getElementById("modalDescription").innerText = property.description;
+    document.getElementById("modalPrice").innerText = property.price;
+    property.images.forEach((img, i) => {
+      document.getElementById(`modalImage${i + 1}`).src = img;
+    });
+    document.getElementById("propertyModal").classList.remove("hidden");
+    document.getElementById("propertyModal").classList.add("flex");
+  }
+
+  function closeModal() {
+    document.getElementById("propertyModal").classList.add("hidden");
+    document.getElementById("propertyModal").classList.remove("flex");
+  }
+</script>
+
+</body>
+</html>
